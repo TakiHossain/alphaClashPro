@@ -23,8 +23,8 @@
         </section>
 
         <!-- Playground Start -->
-        <section class="play-ground">
-            <div>
+        <section class="play-ground hidden">
+            <div class="flex flex-col items-center gap-20 pt-20">
                 <!-- Screen -->
                  <div class="artboard artboard-horizontal phone-6 border-[20px] rounded-2xl border-[#010313CC] border-opacity-80 bg-[#FFFFFFB3] border-opacity-70">
                     <div class="flex justify-center">
@@ -72,7 +72,7 @@
                       </div>
                  </div>
                 <!-- Life Score -->
-                 <div>
+                 <div class="flex justify-between w34">
                     <button class="btn">
                         Life
                         <img src="./images/heart.png" alt="">
@@ -86,9 +86,20 @@
                  </div>
             </div>
         </section>
-        <section class="score">
-
+        
+        <!-- Playground End -->
+         <!-- Final Score Start -->
+        <section class="score flex justify-center items-center min-h-screen hidden">
+            <div class="text-white text-center space-y-6 bg-white bg-opacity-20 p-4 rounded-lg">
+                <h1 class="text-8xl">
+                    <span class="font-extrabold">Score:</span>
+                    <span>14</span>
+                </h1>
+                <button class="btn">Play Again</button>
+                <p>Practice will make you Pro</p>
+            </div>
         </section>
     </main>
+    <script src="./scripts/alphaClash.js"></script>
 </body>
 </html>
