@@ -15,12 +15,18 @@ function handleKeyboardButtonPress(event) {
     const playerPressed = event.key;
     console.log('player pressed', playerPressed);
 
+
+    // Stop the game if pressed 'Esc'
+    if(playerPressed === 'Escape') {
+        gameOver();
+    }
+
     // Get the expected press
     const currentAlphabetElement = document.getElementById('current-alphabet');
     // console.log(currentAlphabetElement);
     const currentText = currentAlphabetElement.innerText;
     const expectedAlphabet = currentText.toLowerCase();
-    console.log(playerPressed, expectedAlphabet);
+    // console.log(playerPressed, expectedAlphabet);
 
     // Check matched or not
     if(playerPressed === expectedAlphabet) {
@@ -37,18 +43,27 @@ function handleKeyboardButtonPress(event) {
         const updatedScore = currentScore + 1;
         setTextElementValueById('current-score', updatedScore);
 
-        // // 2. Increase the score by 1
-        // const newScore = currentScore + 1;
+        // 2. Increase the score by 1
+        const newScore = currentScore + 1;
 
         // // 3. Show the updated score
         // currentScoreElement.innerText = newScore;
 
-
+        // Start a new round
         removeBackgroundColor(expectedAlphabet);
         continueGame();
     }
     else {
         console.log('You missed,you lost a life');
+
+        const currentLife = getTextElementValueById('current-life');
+        const updatedLife = currentLife - 1;
+        setTextElementValueById('current-life', updatedLife);
+
+
+        if(updatedLife === 0) {
+            gameOver();
+        }
 
         // // Get the current life number
         // const currentLifeElement = document.getElementById('current-life');
@@ -82,6 +97,29 @@ function continueGame() {
 
 function playNow() {
     hideElementById('home-screen');
+    hideElementById('final-round');
     showElementById('play-ground');
+
+
+    // reset score and life
+    setTextElementValueById('current-life', 5);
+    setTextElementValueById('current-score', 0);
+
     continueGame();
+}
+
+
+function gameOver() {
+    hideElementById('play-ground');
+    showElementById('final-score');
+
+    // update final score
+    // 1. get the final score
+    const lastScore = getTextElementValueById('current-score');
+    console.log(lastScore);
+    setTextElementValueById('last-score', lastScore);
+
+    // clear the last selected highlighted alphabet
+    const currentAlphabet = getElementTextById('current-alphabet');
+    removeBackgroundColor(currentAlphabet);
 }

@@ -26,9 +26,15 @@ function getTextElementValueById(elementId) {
     return value;
 }
 
-function setTextElementValueById(elementId) {
+function setTextElementValueById(elementId, value) {
     const element = document.getElementById(elementId);
     element.innerText = value;
+}
+
+function getElementTextById(elementId) {
+    const element = document.getElementById(elementId);
+    const text = element.innerText;
+    return text;
 }
 
 
